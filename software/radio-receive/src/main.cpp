@@ -4,7 +4,7 @@
 #include "RF24.h"
 
 char msg[6];
-RF24 radio(7,8);
+RF24 radio(12,14);
 const uint64_t pipe = 0xE8E8F0F0E1LL;
 
 void setup() {
