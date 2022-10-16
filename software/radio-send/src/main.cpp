@@ -5,7 +5,7 @@
 
 char msg[6] = "hello";
 RF24 radio(12, 14);
-const uint64_t pipe = 0xE8E8F0F0E1LL;
+const uint64_t pip = 0xE8E8F0F0E1LL;
 
 void setup() {
   // put your setup code here, to run once:
@@ -14,12 +14,14 @@ void setup() {
   radio.setChannel(2);
   radio.setPayloadSize(7);
   radio.setDataRate(RF24_250KBPS);
-  radio.openWritingPipe(pipe);
+  radio.openWritingPipe(pip);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   Serial.println("send ...");
-  radio.write(msg, 6);
+  if (radio.write(msg, 6)) {
+    Serial.println("Message sent!");
+  }
   delay(3000);
 }
